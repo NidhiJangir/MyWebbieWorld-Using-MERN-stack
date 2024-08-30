@@ -41,10 +41,3 @@ connectdb().then(()=> {
 
 
 
-//run by this--- D:\Mern2024\server> nodemon server
-//db password=VKeNHoXaIHKo0P7i
-
-
-
-
-// admin(nidhijangir@gmail.com)(nidhinidhi)
