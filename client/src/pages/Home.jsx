@@ -11,7 +11,7 @@ export const Home = () => {
               <h1>Welcome to MyWebbieWorld</h1>
               <p>
                 Are you ready to take your business to the next level with
-                cutting-edge IT solutions? Look no further! At Thapa Technical,
+                cutting-edge IT solutions? Look no further! At WebbieWorld,
                 we specialize in providing innovative IT services and solutions
                 tailored to meet your unique needs.
               </p>
@@ -63,14 +63,14 @@ export const Home = () => {
               let's discuss how MyWebbieWorld can help your business thrive in
               the digital age.
             </p>
-            <div className="btn btn-group">
+            {/* <div className="btn btn-group">
               <a href="/contact">
                 <button className="btn">connect now</button>
               </a>
               <a href="/about">
                 <button className="btn secondary-btn">learn more</button>
               </a>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>

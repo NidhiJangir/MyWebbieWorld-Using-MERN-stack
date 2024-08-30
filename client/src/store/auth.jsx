@@ -8,8 +8,9 @@ export const AuthProvider = ({children}) =>{
 
     const [token , setToken] = useState(localStorage.getItem("token"));
     const [user,setUser]= useState("");
+    const [isLoading, setIsLoading] = useState(true);
     const [services, setServices] = useState("");
-
+    const authorizationToken = `Bearer ${token}`;
     const storeTokenInLS = (serverToken) => {
         setToken(serverToken);
         return localStorage.setItem("token", serverToken);
@@ -29,10 +30,11 @@ export const AuthProvider = ({children}) =>{
 
 const userAuthentication = async () =>{
     try {
+        setIsLoading(true);
         const response = await fetch("http://localhost:5001/api/auth/user", {
             method: "GET",
             headers: {
-                Authorization: `Bearer ${token}`,
+                Authorization: authorizationToken,
             },
         });
 
@@ -40,6 +42,11 @@ const userAuthentication = async () =>{
             const data = await response.json();
             console.log("user data", data.userData);
             setUser(data.userData);
+            setIsLoading(false);
+            
+        }else{
+            console.log("Error fetching in user data");
+            setIsLoading(false);
             
         }
     } catch (error) {
@@ -48,15 +55,15 @@ const userAuthentication = async () =>{
 };
 
 
-const getServices= async() =>{
+const getServices = async() =>{
     try {
         const response = await fetch("http://localhost:5001/api/data/service",{
             method: "GET",
         });
         if(response.ok){
-            const data = await response.json();
-            console.log(data.msg);
-            setServices(data.msg);
+            const resp = await response.json();
+            console.log(resp.data);
+             setServices(resp.data);
         }
     } catch (error) {
         console.log(`services frontend error: ${error}`);
@@ -67,30 +74,30 @@ const getServices= async() =>{
         userAuthentication();
     },[]);
 
-    const getServiceData = async () =>{
-         try {
-             const response = await fetch( "http: //localhost: 5ØØØ/api/data/service" , 
-             { 
-                method: " GET" ,
-            });
- if (response.ok){
-     const services = await response.json();
-      setServices(services.data) ;
- }
-console.log("service" ,response); 
-}
-catch (error){
- console.log(error);
-}
-    };
+//     const getServiceData = async () =>{
+//          try {
+//              const response = await fetch( "http: //localhost: 5ØØØ/api/data/service" , 
+//              { 
+//                 method: " GET" ,
+//             });
+//  if (response.ok){
+//      const services = await response.json();
+//       setServices(services.data) ;
+//  }
+// console.log("service" ,response); 
+// }
+// catch (error){
+//  console.log(error);
+// }
+//     };
 useEffect(() =>	{ 
-    getServiceData(); 
+    //getServiceData(); 
     userAuthentication();
 }, []);
 
 
     return (
-    <AuthContext.Provider value={{isLoggedIn, storeTokenInLS, LogoutUser,user,services}}>
+    <AuthContext.Provider value={{isLoggedIn, storeTokenInLS, LogoutUser,user,services,authorizationToken,isLoading}}>
         {children}
     </AuthContext.Provider>
     );

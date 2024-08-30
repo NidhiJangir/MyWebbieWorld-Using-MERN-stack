@@ -431,6 +431,54 @@ a.active {
 }
 
 /** -----------------------
+** Admin section css
+** -------------------------  */
+th{
+  font-size: 1.8rem;
+  padding: 1.5rem;
+  color: var(--dark-color);
+  margin-bottom: 5px;
+  text-transform: capitalize;
+  text-align: center;
+}
+td {
+  font-size: 1.7rem;
+  letter-spacing: 0.1rem;
+  padding: 1.5rem;
+  text-align: center;
+  color: var(--dark-color);
+  width: 30rem;
+
+}
+
+table {
+  background: #fff;
+  box-shadow: rgba(255, 255, 255, 0.2) 0px 7px 29px 0px;
+  border-collapse: collapse;
+  border-radius: 1rem;
+  -webkit-border-radius:1rem;
+  -moz-border-radius: 1rem;
+  -ms-border-radius:1rem;
+  -o-border-radius:1rem;
+
+}
+
+ body tr {
+  display: grid;
+  grid-template-columns: repeat(5,minmax(10rem, 1fr));
+  align-items: center;
+  box-shadow: 0 0.3rem 0 gray;
+  margin-bottom: 10px;
+  border-bottom: 4px solid transparent;
+  color: var(--bg-color);
+ }
+
+ &:last-child {
+  box-shadow: none;
+ }
+
+
+/** -----------------------
 ** media query section css
 ** -------------------------  */
 
@@ -444,6 +492,8 @@ a.active {
       grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
     }
   }
+  td{
+   }
 
   .section-registration {
     & .container {
@@ -454,6 +504,7 @@ a.active {
     }
   }
 }
+
 
 @media (width <= 798px) {
   html {
@@ -474,5 +525,88 @@ a.active {
         padding: 0.6rem 0.6rem;
       }
     }
+  }
+}
+@media (max-width: 480px) {
+  .admin-users-section {
+      padding: 10px;
+  }
+
+  .admin-users .btn {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+.admin-users-section {
+  padding: 20px;
+  /* background-color: #f9f9f9; */
+}
+
+.admin-users-section h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.admin-users {
+  width: 100%;
+  overflow-x: auto; /* Enables horizontal scrolling on small devices */
+}
+
+.admin-users table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+
+
+
+
+
+
+
+/* Media Queries for Responsive Design */
+
+/* Tablet and below */
+@media (max-width: 768px) {
+  .admin-users table,
+  .admin-users th,
+  .admin-users td {
+      display: block;
+      width: 100%;
+  }
+
+  .admin-users thead {
+      display: none; /* Hide table headers */
+  }
+
+  .admin-users tr {
+      margin-bottom: 15px;
+      display: block;
+      /* border: 1px solid #ddd; */
+  }
+
+  .admin-users td {
+      text-align: right;
+      padding-left: 50%;
+      position: relative;
+  }
+
+  .admin-users td::before {
+      content: attr(data-label); /* Use data-label to show column name */
+      position: absolute;
+      left: 15px;
+      font-weight: bold;
+      text-align: left;
   }
 }
